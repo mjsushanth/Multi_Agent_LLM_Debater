@@ -1,0 +1,49 @@
+{
+  "debate_id": "debate_1744427894",
+  "topic": "The humanities are as valuable as STEM in modern education and should receive equal funding.",
+  "timestamp": "2025-04-11T23:18:14.303364",
+  "status": "in_progress",
+  "config": {
+    "num_rounds": 4,
+    "word_limit": [
+      300,
+      500
+    ],
+    "date": "2025-04-11",
+    "use_evidence_check": true,
+    "use_critiques": true,
+    "show_preparations": false
+  },
+  "debaters": {
+    "for": {
+      "model": "gemma3",
+      "stance": "FOR"
+    },
+    "against": {
+      "model": "deepseek-llm",
+      "stance": "AGAINST"
+    }
+  },
+  "rounds": [
+    {
+      "round_number": 0,
+      "round_type": "opening",
+      "exchanges": {
+        "for": {
+          "response": "[No response generated]",
+          "timestamp": "2025-04-11T23:18:20.545507",
+          "word_count": 3,
+          "responding_to": null
+        },
+        "against": {
+          "response": "[No response generated]",
+          "timestamp": "2025-04-11T23:18:20.545507",
+          "word_count": 3,
+          "responding_to": null
+        }
+      },
+      "preparations": {}
+    }
+  ],
+  "full_transcript": "DEBATE TOPIC: The humanities are as valuable as STEM in modern education and should receive equal funding.\n\nROUND 1 (OPENING):\n\nFOR (gemma3):\n[No response generated]\n\nAGAINST (deepseek-llm):\n[No response generated]\n\n"
+}

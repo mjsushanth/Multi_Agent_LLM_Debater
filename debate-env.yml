@@ -1,0 +1,71 @@
+name: debate-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  # Data manipulation and analysis
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  
+  # Visualization
+  - matplotlib
+  - seaborn
+  
+  # Jupyter and development tools
+  - jupyter
+  - ipywidgets
+  - ipykernel
+  - jupyterlab
+  
+  # Testing framework
+  - pytest
+  - pytest-cov
+  
+  # Natural Language Processing
+  - nltk
+  - spacy
+  
+  # Configuration and environment
+  - pyyaml
+  
+  # Statistics and measurement
+  - statsmodels
+  
+  # Utilities
+  - tqdm
+  - joblib
+  
+  # Web and API interaction
+  - requests
+  - beautifulsoup4
+  
+  # Third-party packages via pip
+  - pip:
+    # AI and LLM Tools
+    - openai
+    - anthropic
+    - langchain
+    - transformers
+    - sentence-transformers
+    - tiktoken
+    
+    # Web app (for potential interface)
+    - streamlit
+    - gradio
+    
+    # Data visualization enhancements
+    - plotly
+    - plotly_express
+    
+    # NLP additional packages
+    - textblob
+    - gensim
+    - python-dotenv
+    
+    # Utilities
+    - pydantic
+    - rich
