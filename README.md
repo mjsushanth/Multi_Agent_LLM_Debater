@@ -2,7 +2,7 @@
 
 A modular framework for orchestrating structured debates between multiple large language models (LLMs) with specialized judge evaluation. This project implements an adversarial training approach to enhance LLM argumentative reasoning.
 
-## 🌟 Features
+## Features
 
 - **Multi-Agent Architecture**: Orchestrates debates between opposing LLM agents
 - **Structured Debate Protocol**: Implements formal opening, rebuttal, and closing rounds
@@ -11,14 +11,14 @@ A modular framework for orchestrating structured debates between multiple large 
 - **Multi-Dimensional Judge Framework**: Seven specialized judges evaluate different aspects of argument quality
 - **Local-Based**: Compatible with Ollama-hosted models
 
-## 📋 Requirements
+## Requirements
 
 - Python 3.8+
 - [Ollama](https://ollama.ai/) for local model hosting
 - YAML for configuration files
 - Required Python packages (see Environment Setup)
 
-## 🚀 Installation
+## Installation
 
 ### Environment Setup
 
@@ -56,7 +56,7 @@ A modular framework for orchestrating structured debates between multiple large 
 ```
 
 
-## 🧠 Core Components
+## Core Components
 
 ### 1. Prompt Management System
 
@@ -100,15 +100,21 @@ self.models = {
 }
 ```
 
-## 📊 Results and Evaluation
+## Results and Evaluation
 
 Debate results and judge evaluations are saved to:
 - `results/agent_records/` - Full debate transcripts
 - `results/judge_records/` - Judge evaluations and scores
 
 
+## Skills Picked Up:
+- Agent Coordination, Persistent Memory Systems, Inter-Agent Communication, Scalable Agent Framework.
+- API Integration.
+- Model Orchestration (Custom class handling model lifecycle, health checks, and failover mechanisms.)
+- Assessment: Scoring Algorithms, Meta-Evaluation, Performance Metrics.
+- YAML-Based Configuration, Parameter Management.
 
-## 📝 Citation
+## Citation
 If you use this framework in your research, please cite:
 
 ```
@@ -123,5 +129,5 @@ If you use this framework in your research, please cite:
 ## Contributions
 TBD
 
-## 📄 License
-TBD
+## License
+Authorship of all Code Notebooks, Environment Setup, Prompts Files - Joel Markapudi.  
