@@ -38,6 +38,122 @@ A modular framework for orchestrating structured debates between multiple large 
 
 4. Download required models via Ollama: It's present in the first cell code which can be edited. Selective downloads / Download All can be done.
 
+
+### High-Level Debate Orchestration Flow:
+```
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           PREPARATION & CONFIG LAYER                         │
+│  YAML Prompts → Theory Integration → Judge Config → Model Selection         │
+└──────────────────────────────────────────────────────────────────────────────┘
+                                        ↓
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           DEBATE EXECUTION LAYER                             │
+│  Agent Init → Round Control → Evidence Check → Critique Gen → Response      │
+│  (FOR/AGAINST) → (Opening/Rebuttal/Closing) → (Invisible Prep) → (Output)   │
+└──────────────────────────────────────────────────────────────────────────────┘
+                                        ↓
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                         MULTI-JUDGE EVALUATION LAYER                         │
+│  7 Specialized Judges → Parallel Scoring → Consensus Algorithm → Meta-Judge │
+│  (Logic/Fact/Rhetoric/Strategy/Ethics/Belief/Audience) → Weighted Aggregate │
+└──────────────────────────────────────────────────────────────────────────────┘
+                                        ↓
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                         STORAGE & PERSISTENCE LAYER                          │
+│  JSON Debate Logs → Judgment Records → Transcript Generation → Results API  │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Preparation Pipeline (Per Round)
+
+```
+═══════════════════════════════════════════════════════════════════════════════════════════════
+
+  EVIDENCE CHECK TRACK:
+  ─────────────────────
+  Previous Response → Claim Extraction → Source Verification → Strength Analysis
+        ↓                    ↓                   ↓                    ↓
+  [Self-Critique]    [Find Claims]    [Check Citations]    [Rate: Strong/Med/Weak]
+                                                                      ↓
+                                                            {evidence_report.json}
+                                                                      ↓
+═══════════════════════════════════════════════════════════════════════════════════════════════
+                                                                      ↓
+  ADVERSARIAL CRITIQUE TRACK:                                        ↓
+  ────────────────────────────                                       ↓
+  Opponent Argument → 5-Dim Weakness Detection → Vulnerability Map   ↓
+        ↓                         ↓                      ↓           ↓
+  [Latest Args]    [Logic/Fact/Assume/Rhetoric/Strategy] [Counter]   ↓
+                                                            ↓         ↓
+                                                    {critique.json}   ↓
+                                                            ↓         ↓
+═══════════════════════════════════════════════════════════════════════════════════════════════
+                                                            ↓         ↓
+  ENHANCED PROMPT ASSEMBLY:                                ↓         ↓
+  ──────────────────────────                               ↓         ↓
+  Base Debate Prompt + {evidence_report} + {critique} → Merge → Token Optimize → Final Prompt
+                                                                        ↓
+                                                              [Generate Response]
+                                                                        ↓
+═══════════════════════════════════════════════════════════════════════════════════════════════
+```
+
+### Evaluation & Consensus Architecture
+```
+INPUT: {combined_arguments, topic, stance, word_limit}
+                            ↓
+    ┌───────────────────────────────────────────────────────┐
+    │              PARALLEL JUDGE EVALUATION                 │
+    └───────────────────────────────────────────────────────┘
+                            ↓
+    ╔═══════════════════════════════════════════════════════╗
+    ║                                                       ║
+    ║  LOGICAL_JUDGE     → Fallacy Detection                ║ → Score: 8.1/10
+    ║                      Internal Consistency             ║   Critique: 300 words
+    ║                      Reasoning Chains                 ║
+    ║                                                       ║
+    ║  FACTUAL_JUDGE     → Source Verification              ║ → Score: 7.4/10
+    ║                      Evidence Quality                 ║   Critique: 300 words
+    ║                      Citation Integrity               ║
+    ║                                                       ║
+    ║  RHETORICAL_JUDGE  → Persuasion Analysis              ║ → Score: 8.5/10
+    ║                      Emotional Appeal                 ║   Critique: 300 words
+    ║                      Language Effectiveness           ║
+    ║                                                       ║
+    ║  STRATEGIC_JUDGE   → Argument Selection               ║ → Score: 7.8/10
+    ║                      Adaptive Response                ║   Critique: 300 words
+    ║                      Framing Control                  ║
+    ║                                                       ║
+    ║  ETHICAL_JUDGE     → Fair Representation              ║ → Score: 9.2/10
+    ║                      Intellectual Honesty             ║   Critique: 300 words
+    ║                      Respectful Conduct               ║
+    ║                                                       ║
+    ║  BELIEF_JUDGE      → Audience Impact                  ║ → Score: 6.9/10
+    ║                      Mind-Change Potential            ║   Critique: 300 words
+    ║                      Cross-Segment Appeal             ║
+    ║                                                       ║
+    ║  AUDIENCE_JUDGE    → Comprehension (4 dims)           ║ → Score: 7.5/10
+    ║                      Engagement Metrics               ║   Panel Response: 300 words
+    ║                                                       ║
+    ╚═══════════════════════════════════════════════════════╝
+                            ↓
+    ┌───────────────────────────────────────────────────────┐
+    │               META-JUDGE CONSENSUS                    │
+    │                                                       │
+    │  • Inter-Judge Correlation (r = 0.64-0.91)          │
+    │  • Composite Score Calculation                       │
+    │                                                       │
+    │  FINAL OUTPUT:                                       │
+    │  ─────────────                                       │
+    │  Composite Score: 7.7/10                            │
+    │  Consensus Strengths: [...]                         │
+    │  Consensus Weaknesses: [...]                        │
+    │  Definitive Assessment: 300 words                   │
+    └───────────────────────────────────────────────────────┘
+```
+
+
+
 ## 📁 Project Structure
 
 ```
@@ -54,7 +170,6 @@ A modular framework for orchestrating structured debates between multiple large 
 ├── MultiLLM Debate.ipynb   # Main notebook for running debates
 ├── OLLAMA EDA, Test Scripts.ipynb # Ollama exploration and testing scripts
 ```
-
 
 ## Core Components
 
@@ -78,7 +193,7 @@ A modular framework for orchestrating structured debates between multiple large 
 - Meta-judge synthesizes evaluations into composite assessment
 
 
-## ⚙️ Customization
+## Customization
 
 ### Modifying Debate Prompts
 
